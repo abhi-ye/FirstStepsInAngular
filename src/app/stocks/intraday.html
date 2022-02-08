@@ -10,8 +10,8 @@
   <tbody *ngFor="let data of intradayData">
   <tr>
     <td>{{data.date}}</td>
-    <td>{{data.info['1. open']}}</td>
-    <td>{{data.info['4. close']}}</td>
-    <td>{{data.info['5. volume']}}</td>
+    <td>{{data.openPrice}}</td>
+    <td>{{data.closePrice}}</td>
+    <td>{{data.volume}}</td>
   </tr>
 </table>

@@ -10,7 +10,9 @@ export class stocksIntradayComponent  {
   name = 'stocksIntradayComponent';
   intradayData = Array();
   recentFive = Array();
-  constructor(private stockIntradayService: stockIntradayService) { }
+  constructor(private stockIntradayService: stockIntradayService) {
+    this.loadStockData();
+   }
   loadStockData(){
     console.log("---")
     this.stockIntradayService.getStockdata().subscribe(
@@ -19,7 +21,9 @@ export class stocksIntradayComponent  {
         response=response["Time Series (5min)"];
         Object.keys(response).forEach(key =>  this.intradayData.push({
           date: key,
-          info: response[key]
+          openPrice: response[key]['1. open'],
+          closePrice: response[key]['4. close'],
+          volume: response[key]['5. volume']
        }));       
       console.log(this.intradayData)
       this.intradayData=this.intradayData.slice(0,6);
