@@ -1,5 +1,5 @@
 
-<button class="btn" (click)="loadStockData()"><i class="bi bi-arrow-clockwise">Reload</i></button>
+<!-- <button class="btn" (click)="loadStockData()"><i class="bi bi-arrow-clockwise">Reload</i></button> -->
 <!-- <table class="table table-hover">
   <thead>
   <th scope="col">#</th>
@@ -16,8 +16,8 @@
   </tr>
 </table> -->
 <ag-grid-angular 
-    style="width: 500px; height: 200px;" 
+    style="width: 500px; height: 500px;" 
     class="ag-theme-alpine"
-    [rowData]="intradayData" 
+    [rowData]="rowData"
     [columnDefs]="columnDefs">
 </ag-grid-angular>

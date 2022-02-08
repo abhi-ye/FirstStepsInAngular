@@ -1,4 +1,6 @@
 import { Component, VERSION } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ColDef } from 'ag-grid-community';
 import {stockIntradayService} from '../services/stockintraday.service'
 
 @Component({
@@ -8,14 +10,14 @@ import {stockIntradayService} from '../services/stockintraday.service'
 })
 export class stocksIntradayComponent  {
   name = 'stocksIntradayComponent';
-  intradayData = Array();
-  recentFive = Array();
+  // intraday: Observable<any[]>;
+  intradayData= Array();
+  // recentFive = Array();
   constructor(private stockIntradayService: stockIntradayService) { }
-  loadStockData(){
+  useless(){
     console.log("---")
     this.stockIntradayService.getStockdata().subscribe(
       (response)=>{
-        console.log(this.intradayData)
         response=response["Time Series (5min)"];
         Object.keys(response).forEach(key =>  this.intradayData.push({
           date: key,
@@ -24,10 +26,36 @@ export class stocksIntradayComponent  {
           volume: response[key]['5. volume']
        }));       
       console.log(this.intradayData)
+      // return this.intraday;
       // this.intradayData=this.intradayData.slice(0,6);
       })
   }
 
-  columnDefs = [{ field: "date" }, { field: "openPrice" }, { field: "closePrice" }, { field: "volume"}];
-
+  columnDefs: ColDef[] = [{ field: "date" }, { field: "openPrice" }, { field: "closePrice" }, { field: "volume"},];
+  rowData: [
+    {
+        "date": "2022-02-07 20:00:00",
+        "openPrice": "137.3900",
+        "closePrice": "137.3900",
+        "volume": "108"
+    },
+    {
+        "date": "2022-02-07 17:30:00",
+        "openPrice": "137.5900",
+        "closePrice": "137.5800",
+        "volume": "672"
+    },
+    {
+        "date": "2022-02-07 17:20:00",
+        "openPrice": "137.5800",
+        "closePrice": "137.5800",
+        "volume": "204"
+    },
+    {
+        "date": "2022-02-07 17:10:00",
+        "openPrice": "137.2400",
+        "closePrice": "137.2400",
+        "volume": "1020"
+    }
+]
 }
