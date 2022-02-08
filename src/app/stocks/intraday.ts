@@ -1,6 +1,5 @@
 import { Component, VERSION } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ColDef } from 'ag-grid-community';
 import {stockIntradayService} from '../services/stockintraday.service'
 
 @Component({
@@ -10,12 +9,13 @@ import {stockIntradayService} from '../services/stockintraday.service'
 })
 export class stocksIntradayComponent  {
   name = 'stocksIntradayComponent';
+intradayData: any;
   // intraday: Observable<any[]>;
-  intradayData= Array();
+  // intradayData= Array();
   // recentFive = Array();
-  constructor(private stockIntradayService: stockIntradayService) { }
-  useless(){
+  constructor(private stockIntradayService: stockIntradayService) { 
     console.log("---")
+    // const intradayData= Array();
     this.stockIntradayService.getStockdata().subscribe(
       (response)=>{
         response=response["Time Series (5min)"];
@@ -26,12 +26,8 @@ export class stocksIntradayComponent  {
           volume: response[key]['5. volume']
        }));       
       console.log(this.intradayData)
-      // return this.intraday;
-      // this.intradayData=this.intradayData.slice(0,6);
       })
-  }
-
-  columnDefs: ColDef[] = [{ field: "date" }, { field: "openPrice" }, { field: "closePrice" }, { field: "volume"},];
+}
   rowData: [
     {
         "date": "2022-02-07 20:00:00",
@@ -58,4 +54,6 @@ export class stocksIntradayComponent  {
         "volume": "1020"
     }
 ]
+  columnDefs = [{ field: "date" }, { field: "openPrice" }, { field: "closePrice" }, { field: "volume"},];
+  
 }
