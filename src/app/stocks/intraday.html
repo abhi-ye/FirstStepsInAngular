@@ -1,0 +1,3 @@
+
+<button class="btn" (click)="loadStockData()"><i class="bi bi-arrow-clockwise">Reload</i></button>
+<div *ngFor="let d of intradayData">{{d.date}} &nbsp; {{d.info["1. open"]}}</div>
