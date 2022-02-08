@@ -1,6 +1,6 @@
 
 <button class="btn" (click)="loadStockData()"><i class="bi bi-arrow-clockwise">Reload</i></button>
-<table class="table table-hover">
+<!-- <table class="table table-hover">
   <thead>
   <th scope="col">#</th>
   <th scope="col">Open</th>
@@ -14,4 +14,10 @@
     <td>{{data.info['4. close']}}</td>
     <td>{{data.info['5. volume']}}</td>
   </tr>
-</table>
+</table> -->
+<ag-grid-angular 
+    style="width: 500px; height: 200px;" 
+    class="ag-theme-alpine"
+    [rowData]="intradayData" 
+    [columnDefs]="columnDefs">
+</ag-grid-angular>

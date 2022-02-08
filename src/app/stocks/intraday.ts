@@ -19,14 +19,15 @@ export class stocksIntradayComponent  {
         response=response["Time Series (5min)"];
         Object.keys(response).forEach(key =>  this.intradayData.push({
           date: key,
-          info: response[key]
+          openPrice: response[key]['1. open'],
+          closePrice: response[key]['4. close'],
+          volume: response[key]['5. volume']
        }));       
       console.log(this.intradayData)
-      this.intradayData=this.intradayData.slice(0,6);
+      // this.intradayData=this.intradayData.slice(0,6);
       })
   }
-  loadrecentFive(){
-    this.intradayData.slice(0.6)
-  }
+
+  columnDefs = [{ field: "date" }, { field: "openPrice" }, { field: "closePrice" }, { field: "volume"}];
 
 }
