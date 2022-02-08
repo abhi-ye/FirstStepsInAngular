@@ -9,6 +9,7 @@ import {stockIntradayService} from '../services/stockintraday.service'
 export class stocksIntradayComponent  {
   name = 'stocksIntradayComponent';
   intradayData = Array();
+  recentFive = Array();
   constructor(private stockIntradayService: stockIntradayService) { }
   loadStockData(){
     console.log("---")
@@ -21,7 +22,11 @@ export class stocksIntradayComponent  {
           info: response[key]
        }));       
       console.log(this.intradayData)
+      this.intradayData=this.intradayData.slice(0,6);
       })
+  }
+  loadrecentFive(){
+    this.intradayData.slice(0.6)
   }
 
 }

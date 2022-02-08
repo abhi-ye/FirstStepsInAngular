@@ -1,3 +1,17 @@
 
 <button class="btn" (click)="loadStockData()"><i class="bi bi-arrow-clockwise">Reload</i></button>
-<div *ngFor="let d of intradayData">{{d.date}} &nbsp; {{d.info["1. open"]}}</div>
+<table class="table table-hover">
+  <thead>
+  <th scope="col">#</th>
+  <th scope="col">Open</th>
+  <th scope="col">Close</th>
+  <th scope="col">Volume</th>
+  </thead>
+  <tbody *ngFor="let data of intradayData">
+  <tr>
+    <td>{{data.date}}</td>
+    <td>{{data.info['1. open']}}</td>
+    <td>{{data.info['4. close']}}</td>
+    <td>{{data.info['5. volume']}}</td>
+  </tr>
+</table>
